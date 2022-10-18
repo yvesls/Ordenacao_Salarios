@@ -38,12 +38,12 @@ public class ViewPrincipal {
 	private JButton btnCarregarArquivo;
 	private JLabel lblTempo;
 	private OrdenacaoPresenter presenter;
-	private File caminhoArquivo;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
 	private JTextArea lstOrdem;
 	private JTextArea lstSemOrdem;
 	private JTextArea lblError;
+	private JButton btnLimparCampos;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -101,42 +101,18 @@ public class ViewPrincipal {
 		rbtnCrescente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rbtnCrescente.setBounds(221, 148, 109, 23);
 		frame.getContentPane().add(rbtnCrescente);
-		rbtnCrescente.addActionListener((ActionEvent e) -> {
-			if(rbtnCrescente.isSelected()) {
-				if(rbtnDecrescente.isSelected()) {
-					rbtnDecrescente.setSelected(false);
-				}else {
-					rbtnDecrescente.setSelected(true);
-				}
-			}else {
-				rbtnCrescente.setSelected(true);
-			}
-		});
+		
 		
 		rbtnDecrescente = new JRadioButton("Decrescente", false);
 		rbtnDecrescente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rbtnDecrescente.setBounds(221, 169, 109, 23);
 		frame.getContentPane().add(rbtnDecrescente);
-		rbtnDecrescente.addActionListener((ActionEvent e) -> {
-			if(rbtnDecrescente.isSelected()) {
-				if(rbtnCrescente.isSelected()) {
-					rbtnCrescente.setSelected(false);
-				}else {
-					rbtnCrescente.setSelected(true);
-				}
-			}else {
-				rbtnDecrescente.setSelected(true);
-			}
-		});
+		
 		
 		btnOrdenar = new JButton("Ordenar");
 		btnOrdenar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnOrdenar.setBounds(235, 199, 95, 23);
 		frame.getContentPane().add(btnOrdenar);
-		btnOrdenar.addActionListener((ActionEvent e) ->{
-			presenter.isOrdenar();
-			presenter.Ordenar();
-		});
 		
 		JList list = new JList();
 		list.setBounds(29, 53, 1, 1);
@@ -146,15 +122,6 @@ public class ViewPrincipal {
 		btnCarregarArquivo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCarregarArquivo.setBounds(39, 267, 162, 23);
 		frame.getContentPane().add(btnCarregarArquivo);
-		btnCarregarArquivo.addActionListener((ActionEvent e) ->{
-			JFileChooser chooser = new JFileChooser();
-			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			chooser.showOpenDialog(frame);
-			File f = chooser.getSelectedFile();
-			
-			this.caminhoArquivo = f;
-			presenter.lerArquivo(this.caminhoArquivo);
-		});
 		
 		JLabel Tempo = new JLabel("Tempo:");
 		Tempo.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -184,7 +151,7 @@ public class ViewPrincipal {
 		lstOrdem.setDropMode(DropMode.INSERT);
 		scrollPane_1.setViewportView(lstOrdem);
 		
-		JButton btnLimparCampos = new JButton("Limpar");
+		btnLimparCampos = new JButton("Limpar");
 		btnLimparCampos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLimparCampos.setBounds(235, 233, 95, 23);
 		frame.getContentPane().add(btnLimparCampos);
@@ -201,9 +168,7 @@ public class ViewPrincipal {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(10, 318, 534, -28);
 		frame.getContentPane().add(scrollPane_2);
-		btnLimparCampos.addActionListener((ActionEvent e) ->{
-			this.presenter.resetarCampos();
-		});
+		
 	}
 
 	public JComboBox getCmbModelo() {
@@ -246,7 +211,12 @@ public class ViewPrincipal {
 		return btnOrdenar;
 	}
 
-	public File getCaminhoArquivo() {
-		return caminhoArquivo;
+	public JButton getBtnLimparCampos() {
+		return btnLimparCampos;
 	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
 }

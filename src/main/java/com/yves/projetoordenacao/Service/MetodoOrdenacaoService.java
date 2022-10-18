@@ -3,7 +3,7 @@ package com.yves.projetoordenacao.Service;
 import java.util.ArrayList;
 
 import com.yves.projetoordenacao.Model.BubbleSort;
-import com.yves.projetoordenacao.Model.Colecao;
+import com.yves.projetoordenacao.Model.Collection;
 import com.yves.projetoordenacao.Model.Ordenacao;
 import com.yves.projetoordenacao.Model.SelectionSort;
 
@@ -16,10 +16,10 @@ public class MetodoOrdenacaoService {
 		this.getListaTiposDeOrdenacao().add(new SelectionSort());
 	}
 	
-	public long ordenar(Colecao lista, String tipo, boolean isDecrescente) {
+	public long ordenar(Collection lista, String tipo, boolean isDecrescente) {
 		for(Ordenacao ordem : this.getListaTiposDeOrdenacao()) {
 			if(ordem.tipo().toUpperCase().equals(tipo.toUpperCase())) {
-				return ordem.ordenarPorTipo(lista, isDecrescente);
+				return ordem.ordenarPorSentido(lista, isDecrescente);
 			}
 		}
 		return (long) 0.0;

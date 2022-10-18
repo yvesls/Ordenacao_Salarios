@@ -6,7 +6,7 @@
 package com.yves.projetoordenacao.Model;
 
 public interface Ordenacao {
-    public long ordenarPorTipo(Colecao lista, boolean isDecrescente);
+    public long ordenarPorSentido(Collection lista, boolean isDecrescente);
     
     public String tipo();
 }

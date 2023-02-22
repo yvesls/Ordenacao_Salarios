@@ -20,10 +20,10 @@
 
 # 📸 Layouts 
 
-Tela pricipal do sistema
+<h3 align="center">Tela pricipal do sistema</h3>
 
-<p><img width="100%" height="100%" src="img/principal.png"></img></p>
-
+<p align="center"><img width="100%" height="100%" src="img/principal.png"></img></p>
+<br>
 <br> 
 
 # 📝 Requisitos

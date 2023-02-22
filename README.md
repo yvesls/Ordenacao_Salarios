@@ -7,14 +7,14 @@
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#-layouts">Layouts</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-requsitos-e-recomendacoes">Requisitos e recomendações</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-requisitos">Requisitos e recomendações</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 <p align="center"><img width="30%" height="30%" src="img/Logo_Ufes.png"></img></p>
 
 # 💻 Sobre o projeto 
 
- Projeto criado para a matéria "Projetos de software". A proposta é desenvolver um sistema que ordene uma lista de salários qualquer onde o usuário pode escolher o método de ordenação. O objetivo é desenvolver segundo todos os princípíos de projetos de software (aberto/fechado, responsabilidade única, etc). Segue em anexo os requisitos solicitados pelo professor:
+ Projeto criado para a matéria "Projetos de software". A proposta é desenvolver um sistema que ordene uma lista de salários qualquer onde o usuário pode escolher o método de ordenação. O objetivo é desenvolver segundo todos os princípíos de projetos de software (SOLID). Segue em anexo os requisitos solicitados pelo professor:
 
  <a href="https://docs.google.com/document/d/1-Wdd9cuvDxn7QWEFMWKTe3yZi-zy0f5UfKpri4_KGBU/edit">Requisitos solicitados</a>
 
@@ -26,7 +26,7 @@ Tela pricipal do sistema
 
 <br> 
 
-# 📝 Requisitos e recomendações
+# 📝 Requisitos
 
 REQUISITOS:
 - Java 11

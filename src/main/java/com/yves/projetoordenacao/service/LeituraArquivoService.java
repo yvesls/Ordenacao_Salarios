@@ -1,10 +1,12 @@
-package com.yves.projetoordenacao.Service;
+package com.yves.projetoordenacao.service;
 
 import java.io.File;
 import java.util.Scanner;
-import com.yves.projetoordenacao.Model.Collection;
-import com.yves.projetoordenacao.Presenter.OrdenacaoPresenter;
-import com.yves.projetoordenacao.View.ViewPrincipal;
+
+import com.yves.projetoordenacao.model.Collection;
+import com.yves.projetoordenacao.presenter.OrdenacaoPresenter;
+import com.yves.projetoordenacao.view.ViewPrincipal;
+
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

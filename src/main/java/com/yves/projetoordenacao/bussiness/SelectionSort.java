@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.yves.projetoordenacao.Model;
+package com.yves.projetoordenacao.bussiness;
 
 import java.util.ArrayList;
+
+import com.yves.projetoordenacao.model.Collection;
 
 
 public class SelectionSort implements Ordenacao {

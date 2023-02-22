@@ -1,4 +1,4 @@
-package com.yves.projetoordenacao.Model;
+package com.yves.projetoordenacao.model;
 
 import java.util.ArrayList;
 

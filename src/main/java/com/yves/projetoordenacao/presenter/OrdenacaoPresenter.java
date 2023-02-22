@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.yves.projetoordenacao.Presenter;
+package com.yves.projetoordenacao.presenter;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 
-import com.yves.projetoordenacao.Model.Collection;
-import com.yves.projetoordenacao.Service.LeituraArquivoService;
-import com.yves.projetoordenacao.Service.MetodoOrdenacaoService;
-import com.yves.projetoordenacao.View.ViewPrincipal;
+import com.yves.projetoordenacao.bussiness.BubbleSort;
+import com.yves.projetoordenacao.bussiness.SelectionSort;
+import com.yves.projetoordenacao.model.Collection;
+import com.yves.projetoordenacao.service.LeituraArquivoService;
+import com.yves.projetoordenacao.service.MetodoOrdenacaoService;
+import com.yves.projetoordenacao.view.ViewPrincipal;
 
 public class OrdenacaoPresenter {
 
@@ -21,10 +23,16 @@ public class OrdenacaoPresenter {
     private Collection arrayDoArquivoLido;
     private ViewPrincipal view;
     private long tempoExecucao;
+    private MetodoOrdenacaoService ord;
+    private LeituraArquivoService l;
     
     public OrdenacaoPresenter(ViewPrincipal view) {
-        this.setView(view);
-        this.view.getRbtnDecrescente().addActionListener((ActionEvent e) -> {
+        this.view = view;
+        this.resgatarAcoesView();
+    }
+    
+    public void resgatarAcoesView() {
+    	this.view.getRbtnDecrescente().addActionListener((ActionEvent e) -> {
         	this.configuracaoButtonRadioDecrescente();
 		});
         
@@ -78,10 +86,8 @@ public class OrdenacaoPresenter {
 
     public boolean isOrdenar() {
         if (!this.arrayDoArquivoLido.getLista().isEmpty()) {
-            //System.out.println(this.view.getRbtnDecrescente().isSelected());
-            //System.out.println(this.view.getCmbModelo().getSelectedItem());
-            this.setIsDecrescente(this.view.getRbtnDecrescente().isSelected());
-            this.setTipo((String) this.view.getCmbModelo().getSelectedItem());
+            isDecrescente = this.view.getRbtnDecrescente().isSelected();
+            tipo = (String) this.view.getCmbModelo().getSelectedItem();
             return true;
         } else {
             return false;
@@ -91,9 +97,11 @@ public class OrdenacaoPresenter {
     public void selecionarMetodoOrdenacao() {
         try {
             if (isOrdenar()) {
-                MetodoOrdenacaoService ord = new MetodoOrdenacaoService();
-                this.setTempoExecucao(ord.ordenar(this.getArrayDoArquivoLido(), this.getTipo(), this.getIsDecrescente()));
-                this.getView().getLstOrdem().setText("");
+                ord = new MetodoOrdenacaoService();
+        		ord.getListaTiposDeOrdenacao().add(new BubbleSort());
+        		ord.getListaTiposDeOrdenacao().add(new SelectionSort());
+                tempoExecucao = ord.ordenar(arrayDoArquivoLido, tipo, isDecrescente);
+                this.view.getLstOrdem().setText("");
                 exibirListaOrdenada();
                 exibirTempoExecucao();
                 
@@ -106,89 +114,50 @@ public class OrdenacaoPresenter {
     }
 
     public void lerArquivo(File caminhoArquivo) {
-        this.getView().getLblError().setText("");
-        LeituraArquivoService l = new LeituraArquivoService();
+        this.view.getLblError().setText("");
+        l = new LeituraArquivoService();
         try {
             this.arrayDoArquivoLido = l.lerArquivo(caminhoArquivo);
         } catch (Exception e) {
             this.exibirErroException("Erro: Aconteceu um erro inesperado na execução do arquivo, tente novamente.");
         }
-        this.getView().getLstSemOrdem().setText("");
-        this.setArrayDoArquivoLido(this.arrayDoArquivoLido);
+        this.view.getLstSemOrdem().setText("");
         this.exibirListaDesordenada();
     }
 
     public void exibirListaDesordenada() {
     	if(!this.arrayDoArquivoLido.getLista().isEmpty()) {
-	        for (Double lista : this.getArrayDoArquivoLido().getLista()) {
-	            this.getView().getLstSemOrdem().append(String.valueOf(lista) + "\n");
+	        for (Double lista :arrayDoArquivoLido.getLista()) {
+	        	this.view.getLstSemOrdem().append(String.valueOf(lista) + "\n");
 	        }
     	}else {
-			this.getView().getLstSemOrdem().append("Arquivo vazio!");
+    		this.view.getLstSemOrdem().append("Arquivo vazio!");
 		}
     }
 
     public void exibirListaOrdenada() {
-    	for (Double lista : this.getArrayDoArquivoLido().getLista()) {
-    		this.getView().getLstOrdem().append(String.valueOf(lista) + "\n");
+    	for (Double lista : arrayDoArquivoLido.getLista()) {
+    		this.view.getLstOrdem().append(String.valueOf(lista) + "\n");
     	}
     }
     
     public void exibirTempoExecucao() {
-        this.getView().getLblTempo().setText("");
-        this.getView().getLblTempo().setText(Long.toString(this.getTempoExecucao()) + " ms");
+        this.view.getLblTempo().setText("");
+        this.view.getLblTempo().setText(String.valueOf(tempoExecucao) + " ms");
     }
 
     public void exibirErroException(String e) {
-        this.getView().getLblError().setText("");
-        this.getView().getLblError().setText(e);
+        this.view.getLblError().setText("");
+        this.view.getLblError().setText(e);
     }
 
     public void resetarCampos() {
-        this.setArrayDoArquivoLido(null);
-        this.getView().getLstSemOrdem().setText("");
-        this.getView().getLstOrdem().setText("");
-        this.getView().getLblTempo().setText("");
-        this.setTempoExecucao((long) 0.0);
+        arrayDoArquivoLido = null;
+        this.view.getLstSemOrdem().setText("");
+        this.view.getLstOrdem().setText("");
+        this.view.getLblTempo().setText("");
+        tempoExecucao = (long) 0.0;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public boolean getIsDecrescente() {
-        return this.isDecrescente;
-    }
-
-    public void setIsDecrescente(boolean isDecrescente) {
-        this.isDecrescente = isDecrescente;
-    }
-
-    public Collection getArrayDoArquivoLido() {
-        return arrayDoArquivoLido;
-    }
-
-    public void setArrayDoArquivoLido(Collection arrayDoArquivoLido) {
-        this.arrayDoArquivoLido = arrayDoArquivoLido;
-    }
-
-    public long getTempoExecucao() {
-        return tempoExecucao;
-    }
-
-    public void setTempoExecucao(long tempoExecucao) {
-        this.tempoExecucao = tempoExecucao;
-    }
-
-    public void setView(ViewPrincipal view) {
-        this.view = view;
-    }
-
-    public ViewPrincipal getView() {
-        return this.view;
-    }
+   
 }

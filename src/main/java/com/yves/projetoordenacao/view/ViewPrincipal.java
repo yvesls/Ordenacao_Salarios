@@ -1,32 +1,23 @@
-package com.yves.projetoordenacao.View;
+package com.yves.projetoordenacao.view;
 
-import java.awt.Container;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+
+import com.yves.projetoordenacao.presenter.OrdenacaoPresenter;
+
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.TextArea;
-import java.awt.event.ActionEvent;
-import java.io.File;
 
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
-
-import com.yves.projetoordenacao.Presenter.OrdenacaoPresenter;
-
 import javax.swing.JList;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DropMode;
 import java.awt.Color;
-import javax.swing.SwingConstants;
 
 public class ViewPrincipal {
 
@@ -37,7 +28,6 @@ public class ViewPrincipal {
 	private JButton btnOrdenar;
 	private JButton btnCarregarArquivo;
 	private JLabel lblTempo;
-	private OrdenacaoPresenter presenter;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
 	private JTextArea lstOrdem;
@@ -50,7 +40,7 @@ public class ViewPrincipal {
 			public void run() {
 				try {
 					ViewPrincipal window = new ViewPrincipal();
-					window.setPresenter(new OrdenacaoPresenter(window));
+					new OrdenacaoPresenter(window);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -197,10 +187,6 @@ public class ViewPrincipal {
 
 	public JTextArea getLstOrdem() {
 		return lstOrdem;
-	}
-
-	public void setPresenter(OrdenacaoPresenter presenter) {
-		this.presenter = presenter;
 	}
 
 	public JTextArea getLblError() {

@@ -7,7 +7,7 @@
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
   <a href="#-layouts">Layouts</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-requisitos">Requisitos e recomendações</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-requisitos-e-recomendações">Requisitos e recomendações</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 <p align="center"><img width="30%" height="30%" src="img/Logo_Ufes.png"></img></p>
@@ -26,7 +26,7 @@
 <br>
 <br> 
 
-# 📝 Requisitos
+# 📝 Requisitos e recomendações
 
 REQUISITOS:
 - Java 11
